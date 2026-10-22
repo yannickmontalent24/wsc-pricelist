@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricelist — Cigares & Whiskies</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a3040;--txt:#e7e9ee;--muted:#98a0b3;--accent:#c9a227;--warn:#e0603a;--ok:#5aa469}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{padding:22px 24px 10px;border-bottom:1px solid var(--line);background:var(--panel)}
+h1{margin:0 0 4px;font-size:20px;letter-spacing:.3px}
+.sub{color:var(--muted);font-size:12.5px}
+.links{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.links a{display:inline-block;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--txt);text-decoration:none;font-size:12.5px}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+.links .grp{color:var(--muted);font-size:12px;align-self:center;margin-right:2px}
+section{padding:22px 24px 8px}
+h2{font-size:16px;margin:0 0 10px;letter-spacing:.4px}
+h2 span{color:var(--muted);font-weight:400;font-size:12.5px;margin-left:8px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+input[type=search]{flex:1 1 260px;min-width:200px;padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);font-size:14px}
+input[type=search]:focus{outline:none;border-color:var(--accent)}
+.chk{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12.5px;white-space:nowrap}
+.count{color:var(--muted);font-size:12.5px;white-space:nowrap}
+select.ctry,select.sort{padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);font-size:13px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{background:var(--panel2);font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);cursor:pointer;user-select:none;position:sticky;top:0;z-index:2}
+th:hover{color:var(--accent)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+th.rev{cursor:default}
+tbody tr:hover{background:#1b1f28}
+td.ref{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+td.img{width:78px}
+td.ctry{white-space:nowrap;color:var(--muted);font-size:12.5px}
+td.force{white-space:nowrap}
+.thumb{width:58px;height:58px;object-fit:contain;background:#fff;border-radius:6px;display:block}
+.na{width:58px;height:58px;border:1px dashed var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--warn);font-size:9px;text-align:center;padding:3px;line-height:1.15}
+.note{display:inline-block;margin-left:6px;color:var(--accent);font-size:11px;cursor:help;border-bottom:1px dotted var(--accent)}
+.tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;font-size:10px;letter-spacing:.4px;vertical-align:middle}
+.tag.new{background:#2b3a2b;color:#8fd48f;border:1px solid #3c5a3c}
+.tag.acc{background:#2e2a38;color:#b3a4d4;border:1px solid #453d55}
+a.rv{display:inline-block;margin:2px 4px 2px 0;padding:3px 8px;border:1px solid var(--line);border-radius:999px;color:var(--txt);text-decoration:none;font-size:11.5px;white-space:nowrap;background:var(--panel2)}
+a.rv:hover{border-color:var(--accent);color:var(--accent)}
+a.rv.approx{border-style:dashed;color:var(--muted)}
+a.rv.nep{border-color:#4a5a3a;color:#cfe3a8}
+.meter{display:inline-block;width:86px;height:7px;border-radius:4px;background:linear-gradient(90deg,#3f8f4a,#b7c93a,#e0c23a,#e08a3a,#d24b32);position:relative;vertical-align:middle}
+.meter i{position:absolute;top:-3px;width:3px;height:13px;background:#fff;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.5);transform:translateX(-1.5px)}
+.strength{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.strength span{font-size:11.5px;color:var(--muted)}
+.specs{font-size:11.5px;color:var(--muted);line-height:1.5}
+.specs b{color:var(--txt);font-weight:500}
+.stock{font-size:11.5px;white-space:nowrap}
+.stock b{font-variant-numeric:tabular-nums}
+.stock.zero{color:var(--warn)}
+.stock.ok{color:var(--ok)}
+/* vues */
+.viewbar{display:flex;align-items:center;gap:8px;margin-top:14px}
+.viewbar .grp{color:var(--muted);font-size:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{background:var(--panel2);color:var(--muted);border:0;padding:6px 14px;font-size:12.5px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button.on{background:var(--accent);color:#111;font-weight:600}
+body:not(.grid) .gridwrap, body:not(.grid) select.sort{display:none}
+body.grid table{display:none}
+.gridwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card:hover{border-color:#3a4256}
+.card .pic{background:#fff;height:220px;display:flex;align-items:center;justify-content:center}
+.card .pic img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.card .pic.nopic{background:var(--panel2);color:var(--warn);font-size:12px;border-bottom:1px dashed var(--line);text-align:center;padding:8px}
+.card .body{padding:11px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .ref{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--muted)}
+.card .desc{font-size:13.5px;line-height:1.3;font-weight:500}
+.card .price{font-size:17px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;margin-top:auto}
+.card .revs{display:flex;flex-wrap:wrap}
+footer{padding:20px 24px 40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:26px}
+footer h3{color:var(--txt);font-size:13.5px;margin:0 0 8px}
+footer ul{margin:0 0 14px;padding-left:18px}
+footer li{margin-bottom:4px}
+code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:11.5px}
+@media(max-width:640px){ td.img,th.img{display:none} }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Pricelist — Cigares &amp; Whiskies</h1>
+  <div class="sub">/*NTOT*/ références &middot; cigares : liste « CIGARS OCTOBER 2026 » (stock au 13.10.2026, sous réserve de disponibilité) &middot; whiskies : captures d'écran précédentes &middot; [DONNÉE MANQUANTE : intitulé de la colonne prix et devise]</div>
+  <div class="links">
+    <span class="grp">Notation cigares :</span>
+    <a href="https://www.cigaraficionado.com/" target="_blank" rel="noopener">Cigar Aficionado</a>
+    <a href="https://halfwheel.com/" target="_blank" rel="noopener">halfwheel</a>
+    <span class="grp" style="margin-left:10px">Notation whiskies :</span>
+    <a href="https://www.whiskybase.com/" target="_blank" rel="noopener">Whiskybase</a>
+    <a href="https://www.whiskyadvocate.com/" target="_blank" rel="noopener">Whisky Advocate</a>
+    <a href="https://distiller.com/" target="_blank" rel="noopener">Distiller</a>
+    <span class="grp" style="margin-left:10px">Notation vins :</span>
+    <a href="https://www.winespectator.com/" target="_blank" rel="noopener">Wine Spectator</a>
+    <a href="https://www.wineenthusiast.com/ratings/" target="_blank" rel="noopener">Wine Enthusiast</a>
+    <a href="https://www.vivino.com/" target="_blank" rel="noopener">Vivino</a>
+  </div>
+  <div class="viewbar">
+    <span class="grp">Affichage :</span>
+    <div class="seg"><button type="button" id="vTable">Tableau</button><button type="button" id="vGrid" class="on">Grille</button></div>
+  </div>
+</header>
+
+<section>
+  <h2>Cigares <span id="cigTitle"></span></h2>
+  <div class="toolbar">
+    <input type="search" id="cigSearch" placeholder="Rechercher un cigare (référence ou désignation)…">
+    <select class="ctry" id="cigCountry" aria-label="Pays"></select>
+    <label class="chk"><input type="checkbox" id="cigMissing"> Sans image uniquement</label>
+    <label class="chk"><input type="checkbox" id="cigStock"> En stock uniquement</label>
+    <select class="sort" id="cigSort" aria-label="Trier">
+      <option value="">Ordre de la liste</option>
+      <option value="desc:1">Description A → Z</option>
+      <option value="desc:-1">Description Z → A</option>
+      <option value="price:1">Prix croissant</option>
+      <option value="price:-1">Prix décroissant</option>
+      <option value="stock:-1">Stock décroissant</option>
+      <option value="ref:1">Item No.</option>
+    </select>
+    <span class="count" id="cigCount"></span>
+  </div>
+  <div class="gridwrap" id="cigGrid"></div>
+  <table id="cigTable">
+    <thead><tr>
+      <th class="img">Image</th>
+      <th data-k="ref">Item No.</th>
+      <th data-k="desc">Description</th>
+      <th data-k="country">Pays</th>
+      <th class="rev">Force</th>
+      <th class="num" data-k="price">Prix</th>
+      <th class="num" data-k="stock">Stock</th>
+      <th class="rev">Avis / notes</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Whiskies <span id="whTitle"></span></h2>
+  <div class="toolbar">
+    <input type="search" id="whSearch" placeholder="Rechercher un whisky (référence ou désignation)…">
+    <select class="ctry" id="whCountry" aria-label="Pays"></select>
+    <label class="chk"><input type="checkbox" id="whMissing"> Sans image uniquement</label>
+    <label class="chk" style="display:none"><input type="checkbox" id="whStock"></label>
+    <select class="sort" id="whSort" aria-label="Trier">
+      <option value="">Ordre de la liste</option>
+      <option value="desc:1">Description A → Z</option>
+      <option value="desc:-1">Description Z → A</option>
+      <option value="price:1">Prix croissant</option>
+      <option value="price:-1">Prix décroissant</option>
+      <option value="ref:1">Item No.</option>
+    </select>
+    <span class="count" id="whCount"></span>
+  </div>
+  <div class="gridwrap" id="whGrid"></div>
+  <table id="whTable">
+    <thead><tr>
+      <th class="img">Image</th>
+      <th data-k="ref">Item No.</th>
+      <th data-k="desc">Description</th>
+      <th data-k="country">Pays</th>
+      <th class="rev">Force</th>
+      <th class="num" data-k="price">Prix</th>
+      <th class="num" data-k="stock">Stock</th>
+      <th class="rev">Avis / notes</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<footer>
+  <h3>Mise à jour cigares — liste « CIGARS OCTOBER 2026 »</h3>
+  <ul>
+    <li>Liste cigares remplacée par celle du PDF : /*NCIG*/ lignes (contre 78 précédemment). Aucun prix n'a changé entre les deux listes.</li>
+    <li>Colonnes de stock ajoutées : PNLMAIN, SHOP et TOTAL, reprises du PDF. Mention du PDF : « 13.10.2026 : stock upon availability. »</li>
+    <li>Retirés de la liste : /*REMOVED*/.</li>
+    <li>Nouvelles références (badge <span class="tag new">NOUVEAU</span>) : /*ADDED*/.</li>
+    <li>Les accessoires (badge <span class="tag acc">ACCESSOIRE</span>) n'ont ni pays, ni force, ni fiche de notation.</li>
+    <li>La section whiskies est inchangée (aucune liste whisky mise à jour n'a été fournie).</li>
+  </ul>
+  <h3>Manques et réserves</h3>
+  <ul>
+    <li>[DONNÉE MANQUANTE : intitulé de la colonne prix et devise] — en-tête masqué sur les captures d'origine ; le PDF ne nomme pas davantage la colonne.</li>
+    <li>Images : appelées en lien externe depuis les sites marchands (connexion internet requise). « IMAGE MANQUANTE » = aucune image trouvée ; « IMAGE INDISPO. » = image non chargée.</li>
+    <li>Les mentions <span class="note">i</span> signalent une image de substitution ou un point à vérifier ; le détail est au survol.</li>
+    <li>Pays, force et composition : relevés au niveau de la gamme (une vitole vérifiée par gamme) sur Atlantic Cigar, Cigar Country, Cigar Smoker Club et CigarTerminal ; longueur et diamètre non repris. Les fiches Neptune Cigar n'ont pas pu être lues (contenu tronqué).</li>
+    <li>Colonne « Avis / notes » : liens directs vers la fiche produit. Un lien en pointillés suivi de « ≈ » pointe vers la fiche la plus proche (autre vitole de la même gamme). « pas de fiche trouvée » = aucune page produit trouvée. Liens Neptune Cigar : « Neptune » = fiche de la vitole, « Neptune (gamme) » = page de la gamme.</li>
+    <li>Nouvelles références : liens de notation et liens Neptune non encore recherchés.</li>
+  </ul>
+</footer>
+
+<script>
+const CIGARS = [
+/*CIGARS*/
+];
+const WHISKIES = [
+/*WHISKIES*/
+];
+const nf = new Intl.NumberFormat('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+const SITE = {CA:"Cigar Aficionado", HW:"halfwheel", WB:"Whiskybase", DI:"Distiller"};
+const LVL={"mild":8,"mild - medium":29,"medium":50,"medium - full":71,"full":92};
+
+function revHTML(r){
+  if(!r[9]) return '<span class="specs">'+(r[11]?'—':'pas de fiche trouvée')+'</span>';
+  return r[9].map(([s,u,ex])=>'<a class="rv'+(ex?'':' approx')+'" target="_blank" rel="noopener" title="'+
+    (ex?'Fiche du produit sur '+SITE[s]:'Fiche la plus proche sur '+SITE[s]+' : autre vitole / autre format de la même gamme')+
+    '" href="'+esc(u)+'">'+SITE[s]+(ex?'':' ≈')+'</a>').join('');
+}
+function nep(r){
+  if(!r[7]) return '';
+  const item = r[7][1]==='item';
+  return '<a class="rv nep" target="_blank" rel="noopener" title="'+(item?'Fiche produit Neptune Cigar':'Page de la gamme sur Neptune Cigar (vitole non trouvée en fiche individuelle)')+'" href="'+esc(r[7][0])+'">Neptune'+(item?'':' (gamme)')+'</a>';
+}
+function strengthHTML(r){
+  if(!r[8]) return '<span class="specs">—</span>';
+  const s=r[8][0], p=LVL[s.toLowerCase()];
+  const t='Cape : '+r[8][1]+'\nSous-cape : '+r[8][2]+'\nTripe : '+r[8][3]+'\nFabricant : '+r[8][4]+'\nSource : '+r[8][5];
+  return '<span class="strength" title="'+esc(t)+'"><span class="meter">'+(p===undefined?'':'<i style="left:'+p+'%"></i>')+'</span><span>'+esc(s)+'</span></span>';
+}
+function specsHTML(r){
+  if(!r[8]) return '';
+  const p=LVL[r[8][0].toLowerCase()];
+  return '<div class="specs"><b>Force :</b> <span class="strength" style="display:inline-flex"><span class="meter">'+(p===undefined?'':'<i style="left:'+p+'%"></i>')+'</span><span>'+esc(r[8][0])+'</span></span><br><b>Cape :</b> '+esc(r[8][1])+'<br><b>Sous-cape :</b> '+esc(r[8][2])+'<br><b>Tripe :</b> '+esc(r[8][3])+'<br><b>Fabricant :</b> '+esc(r[8][4])+'</div>';
+}
+function stockHTML(r){
+  if(!r[10]) return '<span class="specs">—</span>';
+  const [pn,sh,tot]=r[10];
+  return '<span class="stock '+(tot?'ok':'zero')+'" title="PNLMAIN : '+pn+'\nSHOP : '+sh+'\nTOTAL : '+tot+'"><b>'+tot+'</b> <span style="color:var(--muted)">('+pn+'+'+sh+')</span></span>';
+}
+function tagHTML(r){
+  if(r[11]) return '<span class="tag acc">ACCESSOIRE</span>';
+  if(r[4] && r[4].indexOf('NOUVEAU')===0) return '<span class="tag new">NOUVEAU</span>';
+  return '';
+}
+
+function makeTable(cfg){
+  const tbody = document.querySelector(cfg.table+' tbody');
+  const search = document.querySelector(cfg.search);
+  const missing = document.querySelector(cfg.missing);
+  const stockOnly = document.querySelector(cfg.stock);
+  const count = document.querySelector(cfg.count);
+  const title = document.querySelector(cfg.title);
+  const grid = document.querySelector(cfg.grid);
+  const sortSel = document.querySelector(cfg.sort);
+  const ctry = document.querySelector(cfg.country);
+  let sortKey=null, sortDir=1;
+  const idx = {ref:0, desc:1, price:2, country:6};
+  const cnt={}; cfg.data.forEach(r=>cnt[r[6]]=(cnt[r[6]]||0)+1);
+  ctry.innerHTML = '<option value="">Tous les pays ('+cfg.data.length+')</option>' +
+    Object.keys(cnt).sort((a,b)=>a.localeCompare(b,'fr')).map(c=>'<option value="'+esc(c)+'">'+esc(c)+' ('+cnt[c]+')</option>').join('');
+  title.textContent = '· ' + cfg.data.length + ' références';
+
+  function markHeaders(){
+    document.querySelectorAll(cfg.table+' th[data-k]').forEach(x=>{
+      x.textContent=x.textContent.replace(/ [↑↓]$/,'');
+      if(x.dataset.k===sortKey) x.textContent += (sortDir===1?' ↑':' ↓');
+    });
+    const v = sortKey ? sortKey+':'+sortDir : '';
+    sortSel.value = [...sortSel.options].some(o=>o.value===v) ? v : '';
+  }
+  function render(){
+    const q = search.value.trim().toLowerCase();
+    let rows = cfg.data.filter(r=>{
+      if(missing.checked && r[3]) return false;
+      if(stockOnly && stockOnly.checked && !(r[10] && r[10][2]>0)) return false;
+      if(ctry.value && r[6]!==ctry.value) return false;
+      if(!q) return true;
+      return (r[0]+' '+r[1]).toLowerCase().includes(q);
+    });
+    if(sortKey){
+      rows = rows.slice().sort((a,b)=>{
+        if(sortKey==='price') return (a[2]-b[2])*sortDir;
+        if(sortKey==='stock') return (((a[10]&&a[10][2])||0)-((b[10]&&b[10][2])||0))*sortDir;
+        const i=idx[sortKey];
+        return String(a[i]).localeCompare(String(b[i]),'fr',{numeric:true})*sortDir;
+      });
+    }
+    tbody.innerHTML = rows.map(r=>{
+      const img = r[3]
+        ? '<img class="thumb" loading="lazy" src="'+esc(r[3])+'" alt="'+esc(r[1])+'" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div class=&quot;na&quot;>IMAGE INDISPO.</div>\'">'
+        : '<div class="na">IMAGE MANQUANTE</div>';
+      const note = r[4] ? ' <span class="note" title="'+esc(r[4])+'">i</span>' : '';
+      return '<tr><td class="img">'+img+'</td><td class="ref">'+esc(r[0])+'</td><td>'+esc(r[1])+note+tagHTML(r)+
+        '</td><td class="ctry">'+esc(r[6])+'</td><td class="force">'+strengthHTML(r)+
+        '</td><td class="num">'+nf.format(r[2])+'</td><td class="num">'+stockHTML(r)+'</td><td>'+revHTML(r)+nep(r)+'</td></tr>';
+    }).join('');
+    grid.innerHTML = rows.map(r=>{
+      const pic = r[3]
+        ? '<div class="pic"><img loading="lazy" src="'+esc(r[3])+'" alt="'+esc(r[1])+'" referrerpolicy="no-referrer" onerror="this.parentNode.className=\'pic nopic\';this.outerHTML=\'IMAGE INDISPO.\'"></div>'
+        : '<div class="pic nopic">IMAGE MANQUANTE</div>';
+      const note = r[4] ? ' <span class="note" title="'+esc(r[4])+'">i</span>' : '';
+      return '<div class="card">'+pic+'<div class="body"><div class="ref">'+esc(r[0])+' · '+esc(r[6])+tagHTML(r)+
+        '</div><div class="desc">'+esc(r[1])+note+'</div>'+specsHTML(r)+
+        (r[10]?'<div class="specs"><b>Stock :</b> '+stockHTML(r)+'</div>':'')+
+        '<div class="price">'+nf.format(r[2])+'</div><div class="revs">'+revHTML(r)+nep(r)+'</div></div></div>';
+    }).join('');
+    count.textContent = rows.length + ' / ' + cfg.data.length + ' affichées';
+  }
+  document.querySelectorAll(cfg.table+' th[data-k]').forEach(th=>{
+    th.addEventListener('click',()=>{
+      const k=th.dataset.k;
+      if(sortKey===k){sortDir=-sortDir;} else {sortKey=k;sortDir=1;}
+      markHeaders(); render();
+    });
+  });
+  search.addEventListener('input',render);
+  missing.addEventListener('change',render);
+  if(stockOnly) stockOnly.addEventListener('change',render);
+  ctry.addEventListener('change',render);
+  sortSel.addEventListener('change',()=>{
+    if(!sortSel.value){sortKey=null;sortDir=1;} else {const [k,d]=sortSel.value.split(':');sortKey=k;sortDir=+d;}
+    markHeaders(); render();
+  });
+  render();
+}
+
+makeTable({data:CIGARS, table:'#cigTable', search:'#cigSearch', missing:'#cigMissing', stock:'#cigStock', count:'#cigCount', title:'#cigTitle', grid:'#cigGrid', sort:'#cigSort', country:'#cigCountry'});
+makeTable({data:WHISKIES, table:'#whTable', search:'#whSearch', missing:'#whMissing', stock:null, count:'#whCount', title:'#whTitle', grid:'#whGrid', sort:'#whSort', country:'#whCountry'});
+
+function setView(v){
+  document.body.classList.toggle('grid', v==='grid');
+  document.getElementById('vTable').classList.toggle('on', v!=='grid');
+  document.getElementById('vGrid').classList.toggle('on', v==='grid');
+  try{ localStorage.setItem('pricelistView', v); }catch(e){}
+}
+setView('grid');
+document.getElementById('vTable').addEventListener('click',()=>setView('table'));
+document.getElementById('vGrid').addEventListener('click',()=>setView('grid'));
+try{ if(localStorage.getItem('pricelistView')==='table') setView('table'); }catch(e){}
+</script>
+</body>
+</html>
