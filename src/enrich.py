@@ -196,9 +196,9 @@ NOTE.update({
 "50":"NOUVEAU (oct. 2026) · image New World Oscuro Gobernador Toro, boîte (pack /5/ non visualisé)",
 "105":"Image : Decade Robusto (vitole « Short Robusto » non référencée chez Atlantic Cigar)",
 "84":"NOUVEAU (oct. 2026) · image Neptune Cigar (fiche Quorum Shade Tres Petit Corona)",
-"121":"NOUVEAU (oct. 2026) · [DONNÉE MANQUANTE : image] « New World Sampler » non identifié avec certitude",
-"62":"NOUVEAU (oct. 2026) · [DONNÉE MANQUANTE : image] sampler non identifié avec certitude",
-"66":"NOUVEAU (oct. 2026) · [DONNÉE MANQUANTE : image] sampler non identifié avec certitude",
+"121":"NOUVEAU (oct. 2026) · « New World Sampler » non identifié avec certitude",
+"62":"NOUVEAU (oct. 2026) · sampler non identifié avec certitude",
+"66":"NOUVEAU (oct. 2026) · sampler non identifié avec certitude",
 })
 SPEC["05"]=["Medium - Full","?","?","?","Habanos",CT]
 NEP_P="https://www.neptunecigar.com/cigars/"; NEP_L="https://www.neptunecigar.com/cigar/"

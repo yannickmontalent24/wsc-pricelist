@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sans alcool — Pricelist</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a3040;--txt:#e7e9ee;--muted:#98a0b3;--accent:#c9a227;--warn:#e0603a;--ok:#5aa469}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+/* barre de navigation */
+nav.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:6px;padding:8px 16px;background:#0b0d11;border-bottom:1px solid var(--line)}
+nav.top .brand{font-weight:700;letter-spacing:.3px;margin-right:8px;white-space:nowrap}
+nav.top .pages{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:thin}
+nav.top .pages a{padding:6px 11px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:13px;white-space:nowrap}
+nav.top .pages a:hover{color:var(--txt);background:var(--panel2)}
+nav.top .pages a.on{color:#111;background:var(--accent);font-weight:600}
+nav.top .cartbtn{margin-left:6px;padding:7px 13px;border-radius:999px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+nav.top .cartbtn b{display:inline-block;min-width:18px;margin-left:4px;padding:0 5px;border-radius:999px;background:var(--accent);color:#111;font-size:11.5px}
+header{padding:20px 24px 10px;border-bottom:1px solid var(--line);background:var(--panel)}
+h1{margin:0 0 4px;font-size:20px;letter-spacing:.3px}
+.sub{color:var(--muted);font-size:12.5px}
+.links{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.links a{display:inline-block;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--txt);text-decoration:none;font-size:12.5px}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+.links .grp{color:var(--muted);font-size:12px;align-self:center;margin-right:2px}
+section{padding:22px 24px 30px}
+h2{font-size:16px;margin:0 0 10px;letter-spacing:.4px}
+h2 span{color:var(--muted);font-weight:400;font-size:12.5px;margin-left:8px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+input[type=search]{flex:1 1 260px;min-width:200px;padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);font-size:14px}
+input[type=search]:focus{outline:none;border-color:var(--accent)}
+.chk{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12.5px;white-space:nowrap}
+.count{color:var(--muted);font-size:12.5px;white-space:nowrap}
+select.ctry,select.sort{padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);font-size:13px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{background:var(--panel2);font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);cursor:pointer;user-select:none;position:sticky;top:49px;z-index:2}
+th:hover{color:var(--accent)}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+th.rev{cursor:default}
+tbody tr:hover{background:#1b1f28}
+td.ref{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+td.img{width:78px}
+td.ctry{white-space:nowrap;color:var(--muted);font-size:12.5px}
+td.force{white-space:nowrap}
+.thumb{width:58px;height:58px;object-fit:contain;background:#fff;border-radius:6px;display:block}
+.na{width:58px;height:58px;border:1px dashed var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--warn);font-size:9px;text-align:center;padding:3px;line-height:1.15}
+.note{display:inline-block;margin-left:6px;color:var(--accent);font-size:11px;cursor:help;border-bottom:1px dotted var(--accent)}
+.tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;font-size:10px;letter-spacing:.4px;vertical-align:middle}
+.tag.new{background:#2b3a2b;color:#8fd48f;border:1px solid #3c5a3c}
+.tag.acc{background:#2e2a38;color:#b3a4d4;border:1px solid #453d55}
+.tag.fest{background:#3a1d2a;color:#f0a7c4;border:1px solid #6b2c48;cursor:help}
+.oldp{font-size:11.5px;font-weight:400;color:var(--muted)}
+a.rv{display:inline-block;margin:2px 4px 2px 0;padding:3px 8px;border:1px solid var(--line);border-radius:999px;color:var(--txt);text-decoration:none;font-size:11.5px;white-space:nowrap;background:var(--panel2)}
+a.rv:hover{border-color:var(--accent);color:var(--accent)}
+a.rv.approx{border-style:dashed;color:var(--muted)}
+a.rv.nep{border-color:#4a5a3a;color:#cfe3a8}
+a.len{color:var(--txt);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
+a.len:hover{color:var(--accent)}
+a.len.approx{text-decoration-style:dashed;color:var(--muted)}
+.meter{display:inline-block;width:86px;height:7px;border-radius:4px;background:linear-gradient(90deg,#3f8f4a,#b7c93a,#e0c23a,#e08a3a,#d24b32);position:relative;vertical-align:middle}
+.meter i{position:absolute;top:-3px;width:3px;height:13px;background:#fff;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.5);transform:translateX(-1.5px)}
+.strength{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.strength span{font-size:11.5px;color:var(--muted)}
+.specs{font-size:11.5px;color:var(--muted);line-height:1.5}
+.specs b{color:var(--txt);font-weight:500}
+.stock{font-size:11.5px;white-space:nowrap}
+.stock b{font-variant-numeric:tabular-nums}
+.stock.zero{color:var(--warn)}
+.stock.ok{color:var(--ok)}
+/* vues */
+.viewbar{display:flex;align-items:center;gap:8px;margin-top:14px}
+.viewbar .grp{color:var(--muted);font-size:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{background:var(--panel2);color:var(--muted);border:0;padding:6px 14px;font-size:12.5px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button.on{background:var(--accent);color:#111;font-weight:600}
+body:not(.grid) .gridwrap, body:not(.grid) select.sort{display:none}
+body.grid table{display:none}
+.gridwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card:hover{border-color:#3a4256}
+.card.incart{border-color:var(--accent)}
+.card .pic{background:#fff;height:220px;display:flex;align-items:center;justify-content:center}
+.card .pic img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.card .pic.nopic{background:var(--panel2);color:var(--warn);font-size:12px;border-bottom:1px dashed var(--line);text-align:center;padding:8px}
+.card .body{padding:11px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .ref{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--muted)}
+.card .desc{font-size:13.5px;line-height:1.3;font-weight:500}
+.card .price{font-size:17px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;margin-top:auto}
+.card .revs{display:flex;flex-wrap:wrap}
+/* panier */
+.add{display:inline-flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel2)}
+.add button{border:0;background:transparent;color:var(--txt);padding:6px 10px;font-size:13px;cursor:pointer}
+.add button:hover{color:var(--accent)}
+.add .q{min-width:26px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+button.addbtn{border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:8px;padding:6px 12px;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+button.addbtn:hover{background:var(--accent);color:#111}
+.card .addrow{margin-top:4px}
+#cart{position:fixed;inset:0;z-index:50;display:none}
+#cart.open{display:block}
+#cart .shade{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+#cart .panel{position:absolute;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column}
+#cart .head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
+#cart .head h3{margin:0;font-size:16px}
+#cart .close{border:0;background:transparent;color:var(--muted);font-size:22px;line-height:1;cursor:pointer}
+#cart .items{flex:1;overflow:auto;padding:8px 16px}
+#cart .item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+#cart .item .n{flex:1;font-size:13px;line-height:1.3}
+#cart .item .n small{display:block;color:var(--muted);font-size:11.5px}
+#cart .item .rm{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:16px}
+#cart .item .rm:hover{color:var(--warn)}
+#cart .empty{color:var(--muted);padding:20px 0}
+#cart .msg{padding:12px 16px 16px;border-top:1px solid var(--line)}
+#cart .msg label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+#cart textarea{width:100%;min-height:150px;resize:vertical;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--txt);font:13px/1.45 inherit;font-family:inherit}
+#cart .actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+#cart .actions button{padding:8px 14px;border-radius:8px;font-size:13px;cursor:pointer}
+#cart .copy{border:0;background:var(--accent);color:#111;font-weight:700}
+#cart .clear{border:1px solid var(--line);background:transparent;color:var(--muted)}
+#cart .ok{color:var(--ok);font-size:12.5px;align-self:center}
+code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:11.5px}
+@media(max-width:640px){ td.img,th.img{display:none} nav.top .brand{display:none} section{padding:18px 16px 24px} header{padding:16px} }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <span class="brand">Pricelist</span>
+  <div class="pages"><a href="index.html">Cigares</a><a href="whiskies.html">Whiskies</a><a href="vins.html">Vins</a><a href="bulles.html">Bulles</a><a href="gins.html">Gins</a><a href="sans-alcool.html" class="on" aria-current="page">Sans alcool</a><a href="rhums.html">Rhums</a><a href="liqueurs.html">Liqueurs</a></div>
+  <button type="button" class="cartbtn" id="cartBtn">Panier<b id="cartN">0</b></button>
+</nav>
+
+<header>
+  <h1>Sans alcool</h1>
+  <div class="sub">9 références &middot; catalogue « Le Bottle Shop — Sélection festive 2026 / 2027 » &middot; prix en Rs TTC valables du 27 octobre 2026 au 10 janvier 2027, dans la limite des stocks disponibles</div>
+  
+  <div class="viewbar">
+    <span class="grp">Affichage :</span>
+    <div class="seg"><button type="button" id="vTable">Tableau</button><button type="button" id="vGrid" class="on">Grille</button></div>
+  </div>
+</header>
+
+<div id="sections"></div>
+
+<div id="cart" aria-hidden="true">
+  <div class="shade"></div>
+  <div class="panel" role="dialog" aria-label="Panier">
+    <div class="head"><h3>Panier</h3><button type="button" class="close" aria-label="Fermer">×</button></div>
+    <div class="items"></div>
+    <div class="msg">
+      <label for="cartMsg">Message de commande (modifiable avant copie)</label>
+      <textarea id="cartMsg"></textarea>
+      <div class="actions">
+        <button type="button" class="copy">Copier le message</button>
+        <button type="button" class="clear">Vider le panier</button>
+        <span class="ok"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Ligne : 0 réf, 1 désignation, 2 prix, 3 image, 4 note, 5 nom développé, 6 pays/origine, 7 Neptune, 8 specs,
+// 9 liens de notation, 10 stock, 11 accessoire, 12 longueur CA, 13 page du catalogue festif, 14 type (filtre),
+// 15 prix de la liste précédente, 16 ligne de détail, 17 libellé pour le message de commande, 18 unité (« Cigare », « bouteille »…)
+const SECTIONS = [{"id": "sa", "title": "Sans alcool", "ph": "Rechercher une boisson sans alcool…", "data": [["Cat. p. 17 / 1", "HYSOPE MÉDITERRANÉEN TONIC WATER", 75.0, "img/cat/p17-01.jpg", "NEW · prix normal Rs 85 · Made in France · Organic", "HYSOPE MÉDITERRANÉEN TONIC WATER", "France", null, null, null, null, false, null, 17, "Mixer", null, "France · 200 ml · Mixer", "HYSOPE MÉDITERRANÉEN TONIC WATER 200 ml", "bouteille"], ["Cat. p. 17 / 2", "HYSOPE CITRON TONIC WATER", 75.0, "img/cat/p17-02.jpg", "NEW · prix normal Rs 85 · Made in France · Organic", "HYSOPE CITRON TONIC WATER", "France", null, null, null, null, false, null, 17, "Mixer", null, "France · 200 ml · Mixer", "HYSOPE CITRON TONIC WATER 200 ml", "bouteille"], ["Cat. p. 17 / 3", "HYSOPE ORIGINAL TONIC WATER", 75.0, "img/cat/p17-03.jpg", "NEW · prix normal Rs 85 · Made in France · Organic", "HYSOPE ORIGINAL TONIC WATER", "France", null, null, null, null, false, null, 17, "Mixer", null, "France · 200 ml · Mixer", "HYSOPE ORIGINAL TONIC WATER 200 ml", "bouteille"], ["Cat. p. 17 / 4", "HYSOPE CONCOMBRE TONIC WATER", 75.0, "img/cat/p17-04.jpg", "NEW · prix normal Rs 85 · Made in France · Organic", "HYSOPE CONCOMBRE TONIC WATER", "France", null, null, null, null, false, null, 17, "Mixer", null, "France · 200 ml · Mixer", "HYSOPE CONCOMBRE TONIC WATER 200 ml", "bouteille"], ["Cat. p. 17 / 5", "HYSOPE SODA CRAFT PAMPLEMOUSSE", 75.0, "img/cat/p17-05.jpg", "NEW · prix normal Rs 85 · Made in France · Organic", "HYSOPE SODA CRAFT PAMPLEMOUSSE", "France", null, null, null, null, false, null, 17, "Mixer", null, "France · 200 ml · Mixer", "HYSOPE SODA CRAFT PAMPLEMOUSSE 200 ml", "bouteille"], ["Cat. p. 17 / 6", "HYSOPE FLEUR DE SUREAU TONIC WATER", 75.0, "img/cat/p17-06.jpg", "NEW · prix normal Rs 85 · Made in France · Organic", "HYSOPE FLEUR DE SUREAU TONIC WATER", "France", null, null, null, null, false, null, 17, "Mixer", null, "France · 200 ml · Mixer", "HYSOPE FLEUR DE SUREAU TONIC WATER 200 ml", "bouteille"], ["Cat. p. 17 / 7", "HYSOPE GINGER ALE DELICATE", 75.0, "img/cat/p17-07.jpg", "NEW · prix normal Rs 85 · Made in France · Organic", "HYSOPE GINGER ALE DELICATE", "France", null, null, null, null, false, null, 17, "Mixer", null, "France · 200 ml · Mixer", "HYSOPE GINGER ALE DELICATE 200 ml", "bouteille"], ["Cat. p. 18 / 8", "CAMISA SPARKLING RED GRAPE", 140.0, "img/cat/p18-08.jpg", "", "CAMISA SPARKLING RED GRAPE", "Non indiquée au catalogue", null, null, null, null, false, null, 18, "Rouge", null, "75 cl · Rouge", "CAMISA SPARKLING RED GRAPE", "bouteille"], ["Cat. p. 18 / 9", "CAMISA SPARKLING WHITE GRAPE", 140.0, "img/cat/p18-09.jpg", "", "CAMISA SPARKLING WHITE GRAPE", "Non indiquée au catalogue", null, null, null, null, false, null, 18, "Blanc", null, "75 cl · Blanc", "CAMISA SPARKLING WHITE GRAPE", "bouteille"]], "cat": true}];
+const nf = new Intl.NumberFormat('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+const SITE = {CA:"Cigar Aficionado", HW:"halfwheel", WB:"Whiskybase", DI:"Distiller", VI:"Vivino"};
+const LVL={"mild":8,"mild - medium":29,"medium":50,"medium - full":71,"full":92};
+const PLURAL={"Cigare":"Cigares","bouteille":"bouteilles","Accessoire":"Accessoires"};
+
+/* ---------- panier (conservé dans ce navigateur) ---------- */
+const CART_KEY='pricelistCart';
+let cart=[];
+try{ cart=JSON.parse(localStorage.getItem(CART_KEY)||'[]'); if(!Array.isArray(cart)) cart=[]; }catch(e){ cart=[]; }
+function saveCart(){ try{ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }catch(e){} }
+function qtyOf(id){ const it=cart.find(x=>x.id===id); return it?it.q:0; }
+function setQty(r,q){
+  const i=cart.findIndex(x=>x.id===r[0]);
+  if(q<=0){ if(i>=0) cart.splice(i,1); }
+  else if(i>=0) cart[i].q=q;
+  else cart.push({id:r[0], name:r[17], unit:r[18], q:q});
+  saveCart(); refreshCart();
+}
+function unitWord(it){ return it.q>1 ? (PLURAL[it.unit]||it.unit) : it.unit; }
+function orderMessage(){
+  if(!cart.length) return '';
+  return 'Je voudrais passer la commande suivante:\n' + cart.map(it=>'- '+it.q+' '+unitWord(it)+' '+it.name).join('\n');
+}
+const ROWS={}; SECTIONS.forEach(s=>s.data.forEach(r=>ROWS[r[0]]=r));
+function addHTML(r){
+  const q=qtyOf(r[0]);
+  if(!q) return '<button type="button" class="addbtn" data-add="'+esc(r[0])+'">Ajouter au panier</button>';
+  return '<span class="add"><button type="button" data-dec="'+esc(r[0])+'" aria-label="Retirer un">−</button><span class="q">'+q+
+    '</span><button type="button" data-inc="'+esc(r[0])+'" aria-label="Ajouter un">+</button></span>';
+}
+const cartEl=document.getElementById('cart'), msgEl=document.getElementById('cartMsg');
+function refreshCart(){
+  document.getElementById('cartN').textContent = cart.reduce((a,b)=>a+b.q,0);
+  cartEl.querySelector('.items').innerHTML = cart.length ? cart.map(it=>
+    '<div class="item"><span class="n">'+esc(it.name)+'<small>'+esc(it.id)+'</small></span>'+
+    '<span class="add"><button type="button" data-cdec="'+esc(it.id)+'">−</button><span class="q">'+it.q+'</span><button type="button" data-cinc="'+esc(it.id)+'">+</button></span>'+
+    '<button type="button" class="rm" data-crm="'+esc(it.id)+'" aria-label="Retirer">×</button></div>').join('')
+    : '<div class="empty">Le panier est vide. Ajoutez des produits depuis n’importe quelle page.</div>';
+  msgEl.value = orderMessage();
+  document.querySelectorAll('[data-slot]').forEach(el=>{
+    const r=ROWS[el.dataset.slot]; if(!r) return;
+    el.innerHTML=addHTML(r);
+    const card=el.closest('.card'); if(card) card.classList.toggle('incart', qtyOf(r[0])>0);
+  });
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button'); if(!t) return;
+  const d=t.dataset;
+  if(d.add) setQty(ROWS[d.add],1);
+  else if(d.inc) setQty(ROWS[d.inc],qtyOf(d.inc)+1);
+  else if(d.dec) setQty(ROWS[d.dec],qtyOf(d.dec)-1);
+  else if(d.cinc||d.cdec||d.crm){
+    const id=d.cinc||d.cdec||d.crm, it=cart.find(x=>x.id===id); if(!it) return;
+    it.q += d.cinc?1:d.cdec?-1:-it.q;
+    if(it.q<=0) cart.splice(cart.indexOf(it),1);
+    saveCart(); refreshCart();
+  }
+});
+document.getElementById('cartBtn').addEventListener('click',()=>{ cartEl.classList.add('open'); cartEl.setAttribute('aria-hidden','false'); });
+cartEl.querySelector('.shade').addEventListener('click',()=>cartEl.classList.remove('open'));
+cartEl.querySelector('.close').addEventListener('click',()=>cartEl.classList.remove('open'));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') cartEl.classList.remove('open'); });
+cartEl.querySelector('.clear').addEventListener('click',()=>{ cart=[]; saveCart(); refreshCart(); });
+cartEl.querySelector('.copy').addEventListener('click',async()=>{
+  const ok=cartEl.querySelector('.ok');
+  try{ await navigator.clipboard.writeText(msgEl.value); ok.textContent='Message copié'; }
+  catch(e){ msgEl.select(); try{ document.execCommand('copy'); ok.textContent='Message copié'; }catch(_){ ok.textContent='Sélectionnez le texte et copiez-le'; } }
+  setTimeout(()=>ok.textContent='',2500);
+});
+window.addEventListener('storage',e=>{ if(e.key===CART_KEY){ try{ cart=JSON.parse(e.newValue||'[]'); }catch(_){ cart=[]; } refreshCart(); } });
+
+/* ---------- rendu des fiches ---------- */
+function revHTML(r){
+  if(!r[9]) return r[13]||r[11] ? '' : '<span class="specs">pas de fiche trouvée</span>';
+  return r[9].map(([s,u,ex])=>'<a class="rv'+(ex?'':' approx')+'" target="_blank" rel="noopener" title="'+
+    (ex?'Fiche du produit sur '+SITE[s]:'Fiche la plus proche sur '+SITE[s]+' : autre vitole / autre format de la même gamme')+
+    '" href="'+esc(u)+'">'+SITE[s]+(ex?'':' ≈')+'</a>').join('');
+}
+function nep(r){
+  if(!r[7]) return '';
+  const item = r[7][1]==='item';
+  return '<a class="rv nep" target="_blank" rel="noopener" title="'+(item?'Fiche produit Neptune Cigar':'Page de la gamme sur Neptune Cigar (vitole non trouvée en fiche individuelle)')+'" href="'+esc(r[7][0])+'">Neptune'+(item?'':' (gamme)')+'</a>';
+}
+function strengthHTML(r){
+  if(!r[8]) return '<span class="specs">—</span>';
+  const s=r[8][0], p=LVL[s.toLowerCase()];
+  const t='Cape : '+r[8][1]+'\nSous-cape : '+r[8][2]+'\nTripe : '+r[8][3]+'\nFabricant : '+r[8][4]+'\nSource : '+r[8][5];
+  return '<span class="strength" title="'+esc(t)+'"><span class="meter">'+(p===undefined?'':'<i style="left:'+p+'%"></i>')+'</span><span>'+esc(s)+'</span></span>';
+}
+function specsHTML(r){
+  if(!r[8]) return '';
+  const p=LVL[r[8][0].toLowerCase()];
+  return '<div class="specs"><b>Force :</b> <span class="strength" style="display:inline-flex"><span class="meter">'+(p===undefined?'':'<i style="left:'+p+'%"></i>')+'</span><span>'+esc(r[8][0])+'</span></span><br><b>Cape :</b> '+esc(r[8][1])+'<br><b>Sous-cape :</b> '+esc(r[8][2])+'<br><b>Tripe :</b> '+esc(r[8][3])+'<br><b>Fabricant :</b> '+esc(r[8][4])+'</div>';
+}
+function lenHTML(r){
+  if(!r[12]) return '';
+  const [l,n,u,ex]=r[12];
+  return '<div class="specs"><b>Longueur :</b> <a class="len'+(ex?'':' approx')+'" target="_blank" rel="noopener" title="'+
+    esc('Cigar Aficionado : '+n+(ex?'':'\nMême vitole, ligne voisine (pas de fiche pour cette ligne exacte)'))+'" href="'+esc(u)+'">'+esc(l)+(ex?'':' ≈')+'</a></div>';
+}
+function priceHTML(r){
+  return (r[13]?'Rs ':'')+nf.format(r[2])+(r[13]?' TTC':'');
+}
+function oldHTML(r){
+  return r[15]!==null && r[15]!==undefined ? '<div class="oldp">Prix liste précédente : '+nf.format(r[15])+'</div>' : '';
+}
+function stockHTML(r){
+  if(!r[10]) return '<span class="specs">—</span>';
+  const [pn,sh,tot]=r[10];
+  return '<span class="stock '+(tot?'ok':'zero')+'" title="PNLMAIN : '+pn+'\nSHOP : '+sh+'\nTOTAL : '+tot+'"><b>'+tot+'</b> <span style="color:var(--muted)">('+pn+'+'+sh+')</span></span>';
+}
+function tagHTML(r){
+  if(r[13]) return '<span class="tag fest" title="Sélection festive 2026/2027 — prix valables du 27 octobre 2026 au 10 janvier 2027 (catalogue Le Bottle Shop, p. '+r[13]+')">FÊTES 2026/2027</span>';
+  if(r[11]) return '<span class="tag acc">ACCESSOIRE</span>';
+  if(r[4] && r[4].indexOf('NOUVEAU')===0) return '<span class="tag new">NOUVEAU</span>';
+  return '';
+}
+function imgCell(r){
+  return r[3]
+    ? '<img class="thumb" loading="lazy" src="'+esc(r[3])+'" alt="'+esc(r[1])+'" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div class=&quot;na&quot;>IMAGE INDISPO.</div>\'">'
+    : '<div class="na">IMAGE MANQUANTE</div>';
+}
+
+function sectionHTML(c){
+  const sortOpts = '<option value="">'+(c.cat?'Ordre du catalogue':'Ordre de la liste')+'</option><option value="desc:1">Description A → Z</option>'+
+    '<option value="desc:-1">Description Z → A</option><option value="price:1">Prix croissant</option><option value="price:-1">Prix décroissant</option>'+
+    (c.stock?'<option value="stock:-1">Stock décroissant</option>':'')+(c.cat?'':'<option value="ref:1">Item No.</option>');
+  const head = c.cat
+    ? '<th class="img">Image</th><th data-k="ref">Réf. catalogue</th><th data-k="desc">Description</th><th data-k="country">Origine</th><th class="rev">Détail</th><th class="num" data-k="price">Prix</th>'+(c.reviews?'<th class="rev">Avis</th>':'')+'<th class="rev">Panier</th>'
+    : '<th class="img">Image</th><th data-k="ref">Item No.</th><th data-k="desc">Description</th><th data-k="country">Pays</th><th class="rev">Force</th><th class="num" data-k="price">Prix</th><th class="num" data-k="stock">Stock</th><th class="rev">Avis / notes</th><th class="rev">Panier</th>';
+  return '<section id="'+c.id+'"><h2>'+esc(c.title)+' <span id="'+c.id+'Title"></span></h2><div class="toolbar">'+
+    '<input type="search" id="'+c.id+'Search" placeholder="'+esc(c.ph)+'">'+
+    (c.types?'<select class="ctry" id="'+c.id+'Type" aria-label="Type"></select>':'')+
+    '<select class="ctry" id="'+c.id+'Country" aria-label="'+(c.cat?'Origine':'Pays')+'"></select>'+
+    (c.missing?'<label class="chk"><input type="checkbox" id="'+c.id+'Missing"> Sans image uniquement</label>':'')+
+    (c.stock?'<label class="chk"><input type="checkbox" id="'+c.id+'Stock"> En stock uniquement</label>':'')+
+    '<select class="sort" id="'+c.id+'Sort" aria-label="Trier">'+sortOpts+'</select>'+
+    '<span class="count" id="'+c.id+'Count"></span></div><div class="gridwrap" id="'+c.id+'Grid"></div>'+
+    '<table id="'+c.id+'Table"><thead><tr>'+head+'</tr></thead><tbody></tbody></table></section>';
+}
+
+function makeTable(c){
+  const $=s=>document.getElementById(c.id+s);
+  const tbody=$('Table').querySelector('tbody'), search=$('Search'), missing=$('Missing'), stockOnly=$('Stock'),
+        count=$('Count'), title=$('Title'), grid=$('Grid'), sortSel=$('Sort'), ctry=$('Country'), typ=$('Type');
+  let sortKey=null, sortDir=1;
+  const idx = {ref:0, desc:1, price:2, country:6};
+  const cnt={}; c.data.forEach(r=>cnt[r[6]]=(cnt[r[6]]||0)+1);
+  ctry.innerHTML = '<option value="">'+(c.cat?'Toutes les origines':'Tous les pays')+' ('+c.data.length+')</option>' +
+    Object.keys(cnt).sort((a,b)=>a.localeCompare(b,'fr')).map(x=>'<option value="'+esc(x)+'">'+esc(x)+' ('+cnt[x]+')</option>').join('');
+  title.textContent = '· ' + c.data.length + ' références';
+  if(typ){
+    const tc={}; c.data.forEach(r=>tc[r[14]]=(tc[r[14]]||0)+1);
+    typ.innerHTML = '<option value="">'+c.typeAll+' ('+c.data.length+')</option>' +
+      c.types.filter(t=>tc[t]).map(t=>'<option value="'+esc(t)+'">'+esc(t)+' ('+tc[t]+')</option>').join('');
+  }
+  function markHeaders(){
+    $('Table').querySelectorAll('th[data-k]').forEach(x=>{
+      x.textContent=x.textContent.replace(/ [↑↓]$/,'');
+      if(x.dataset.k===sortKey) x.textContent += (sortDir===1?' ↑':' ↓');
+    });
+    const v = sortKey ? sortKey+':'+sortDir : '';
+    sortSel.value = [...sortSel.options].some(o=>o.value===v) ? v : '';
+  }
+  function render(){
+    const q = search.value.trim().toLowerCase();
+    let rows = c.data.filter(r=>{
+      if(missing && missing.checked && r[3]) return false;
+      if(typ && typ.value && r[14]!==typ.value) return false;
+      if(stockOnly && stockOnly.checked && !(r[10] && r[10][2]>0)) return false;
+      if(ctry.value && r[6]!==ctry.value) return false;
+      if(!q) return true;
+      return (r[0]+' '+r[1]).toLowerCase().includes(q);
+    });
+    if(sortKey){
+      rows = rows.slice().sort((a,b)=>{
+        if(sortKey==='price') return (a[2]-b[2])*sortDir;
+        if(sortKey==='stock') return (((a[10]&&a[10][2])||0)-((b[10]&&b[10][2])||0))*sortDir;
+        const i=idx[sortKey];
+        return String(a[i]).localeCompare(String(b[i]),'fr',{numeric:true})*sortDir;
+      });
+    }
+    const note=r=>r[4] ? ' <span class="note" title="'+esc(r[4])+'">i</span>' : '';
+    const slot=r=>'<span data-slot="'+esc(r[0])+'">'+addHTML(r)+'</span>';
+    tbody.innerHTML = rows.map(r=> c.cat
+      ? '<tr><td class="img">'+imgCell(r)+'</td><td class="ref">'+esc(r[0])+'</td><td>'+esc(r[1])+note(r)+tagHTML(r)+'</td><td class="ctry">'+esc(r[6])+
+        '</td><td class="ctry">'+esc(r[16])+'</td><td class="num">'+priceHTML(r)+'</td>'+(c.reviews?'<td>'+revHTML(r)+'</td>':'')+'<td>'+slot(r)+'</td></tr>'
+      : '<tr><td class="img">'+imgCell(r)+'</td><td class="ref">'+esc(r[0])+'</td><td>'+esc(r[1])+note(r)+tagHTML(r)+
+        '</td><td class="ctry">'+esc(r[6])+'</td><td class="force">'+strengthHTML(r)+
+        '</td><td class="num">'+priceHTML(r)+oldHTML(r)+'</td><td class="num">'+stockHTML(r)+'</td><td>'+revHTML(r)+nep(r)+'</td><td>'+slot(r)+'</td></tr>'
+    ).join('');
+    grid.innerHTML = rows.map(r=>{
+      const pic = r[3]
+        ? '<div class="pic"><img loading="lazy" src="'+esc(r[3])+'" alt="'+esc(r[1])+'" referrerpolicy="no-referrer" onerror="this.parentNode.className=\'pic nopic\';this.outerHTML=\'IMAGE INDISPO.\'"></div>'
+        : '<div class="pic nopic">IMAGE MANQUANTE</div>';
+      const revs = (!c.cat || c.reviews) ? revHTML(r)+nep(r) : '';
+      return '<div class="card'+(qtyOf(r[0])?' incart':'')+'">'+pic+'<div class="body"><div class="ref">'+esc(r[0])+' · '+esc(r[6])+tagHTML(r)+
+        '</div><div class="desc">'+esc(r[1])+note(r)+'</div>'+(r[16]?'<div class="specs">'+esc(r[16])+'</div>':'')+specsHTML(r)+lenHTML(r)+
+        (r[10]?'<div class="specs"><b>Stock :</b> '+stockHTML(r)+'</div>':'')+
+        '<div class="price">'+priceHTML(r)+oldHTML(r)+'</div>'+(revs?'<div class="revs">'+revs+'</div>':'')+
+        '<div class="addrow">'+slot(r)+'</div></div></div>';
+    }).join('');
+    count.textContent = rows.length + ' / ' + c.data.length + ' affichées';
+  }
+  $('Table').querySelectorAll('th[data-k]').forEach(th=>{
+    th.addEventListener('click',()=>{
+      const k=th.dataset.k;
+      if(sortKey===k){sortDir=-sortDir;} else {sortKey=k;sortDir=1;}
+      markHeaders(); render();
+    });
+  });
+  search.addEventListener('input',render);
+  if(missing) missing.addEventListener('change',render);
+  if(stockOnly) stockOnly.addEventListener('change',render);
+  if(typ) typ.addEventListener('change',render);
+  ctry.addEventListener('change',render);
+  sortSel.addEventListener('change',()=>{
+    if(!sortSel.value){sortKey=null;sortDir=1;} else {const [k,d]=sortSel.value.split(':');sortKey=k;sortDir=+d;}
+    markHeaders(); render();
+  });
+  render();
+}
+
+document.getElementById('sections').innerHTML = SECTIONS.map(sectionHTML).join('');
+SECTIONS.forEach(makeTable);
+refreshCart();
+
+function setView(v){
+  document.body.classList.toggle('grid', v==='grid');
+  document.getElementById('vTable').classList.toggle('on', v!=='grid');
+  document.getElementById('vGrid').classList.toggle('on', v==='grid');
+  try{ localStorage.setItem('pricelistView', v); }catch(e){}
+}
+let v0='grid';
+try{ if(localStorage.getItem('pricelistView')==='table') v0='table'; }catch(e){}
+setView(v0);
+document.getElementById('vTable').addEventListener('click',()=>setView('table'));
+document.getElementById('vGrid').addEventListener('click',()=>setView('grid'));
+</script>
+</body>
+</html>
