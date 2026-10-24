@@ -85,8 +85,8 @@ NOTE={
 "110":"Image : conditionnement 10-pack (visuel boîte de 20 non trouvé)",
 "94":"IMAGE MANQUANTE : vitole « 95 Perfecto » non trouvée dans la gamme Diamond Crown Julius Caeser",
 "105":"IMAGE MANQUANTE : vitole « Short Robusto » non trouvée dans la gamme Rocky Patel Decade",
-"112":"IMAGE MANQUANTE : vitole « Corona » non trouvée dans la gamme Rocky Patel Number 6",
-"71":"IMAGE MANQUANTE : aucune vitole « Short Torpedo » trouvée dans la gamme Brick House Double Connecticut",
+"112":"Image : Neptune Cigar (fiche Rocky Patel Number 6 Corona)",
+"71":"Image : Neptune Cigar (fiche Brick House Double Connecticut Short Torpedo)",
 "58":"NOUVELLE RÉFÉRENCE (liste d'octobre 2026) : image, fiche et liens non encore recherchés",
 "76":"NOUVELLE RÉFÉRENCE (liste d'octobre 2026) : image, fiche et liens non encore recherchés",
 "84":"NOUVELLE RÉFÉRENCE (liste d'octobre 2026) : image, fiche et liens non encore recherchés",
@@ -183,6 +183,8 @@ IMG.update({
 "67":"https://cdn11.bigcommerce.com/s-2ooutu2zpl/products/46130/images/56358/New_World_Dorado_by_AJ_Fernandez_Sampler__60369.1707321762.500.750.jpg?c=2",
 "50":"https://cdn11.bigcommerce.com/s-2ooutu2zpl/products/36241/images/58407/New_World_Oscuro_by_AJ_Fernandez_Gobernador_Toro_Box__97448.1739472946.500.750.jpg?c=2",
 "105":"https://cdn11.bigcommerce.com/s-2ooutu2zpl/products/38096/images/41016/Robusto9342__54378.1509506946.500.750.jpg?c=2",
+"71":"https://images.neptunecigar.com/prodimgl/222392_0.jpg?dummy=140523750",
+"112":"https://images.neptunecigar.com/prodimgl/299548_0.jpg?dummy=120246613",
 })
 NOTE.update({
 "05":"NOUVEAU (oct. 2026) · image Trinidad Esmeralda, boîte de 12 (CigarTerminal)",
