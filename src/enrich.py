@@ -334,3 +334,6 @@ LEN={
 "114":('6 1/2"',"Rocky Patel Number 6 Toro",CAR+"22140/name/rocky-patel-number-6-toro-toro",E),
 "117":('5"',"Rocky Patel Disciple Robusto",CAR+"23586/name/rocky-patel-disciple-robusto-robusto",E),
 }
+# Fiches CA trouvées lors du relevé des longueurs : ajoutées (ou substituées à une fiche « autre vitole ») comme liens de notation
+for k in ["05","48","57","58","59","60","61","68","72","90","102","103"]:
+    LINKS[k]=[("CA",LEN[k][2],LEN[k][3])]+[l for l in LINKS.get(k,[]) if l[0]!="CA"]
