@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pricelist — Cigares & Whiskies</title>
+<title>Pricelist — Cigares, Whiskies, Vins & Spiritueux</title>
 <style>
 :root{--bg:#0f1115;--panel:#171a21;--panel2:#1d212a;--line:#2a3040;--txt:#e7e9ee;--muted:#98a0b3;--accent:#c9a227;--warn:#e0603a;--ok:#5aa469}
 *{box-sizing:border-box}
@@ -41,6 +41,8 @@ td.force{white-space:nowrap}
 .tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;font-size:10px;letter-spacing:.4px;vertical-align:middle}
 .tag.new{background:#2b3a2b;color:#8fd48f;border:1px solid #3c5a3c}
 .tag.acc{background:#2e2a38;color:#b3a4d4;border:1px solid #453d55}
+.tag.fest{background:#3a1d2a;color:#f0a7c4;border:1px solid #6b2c48;cursor:help}
+.oldp{font-size:11.5px;font-weight:400;color:var(--muted)}
 a.rv{display:inline-block;margin:2px 4px 2px 0;padding:3px 8px;border:1px solid var(--line);border-radius:999px;color:var(--txt);text-decoration:none;font-size:11.5px;white-space:nowrap;background:var(--panel2)}
 a.rv:hover{border-color:var(--accent);color:var(--accent)}
 a.rv.approx{border-style:dashed;color:var(--muted)}
@@ -89,8 +91,8 @@ code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:11.5px
 <body>
 
 <header>
-  <h1>Pricelist — Cigares &amp; Whiskies</h1>
-  <div class="sub">/*NTOT*/ références &middot; cigares : liste « CIGARS OCTOBER 2026 » (stock au 13.10.2026, sous réserve de disponibilité) &middot; whiskies : captures d'écran précédentes &middot; [DONNÉE MANQUANTE : intitulé de la colonne prix et devise]</div>
+  <h1>Pricelist — Cigares, Whiskies, Vins &amp; Spiritueux</h1>
+  <div class="sub">/*NTOT*/ références &middot; cigares : liste « CIGARS OCTOBER 2026 » (stock au 13.10.2026, sous réserve de disponibilité) &middot; whiskies : captures d'écran précédentes, prix mis à jour d'après le catalogue festif pour /*NWH_UPD*/ références &middot; vins, bulles, gins, sans alcool, rhums et liqueurs : catalogue « Le Bottle Shop — Sélection festive 2026 / 2027 » (/*NCAT*/ références, prix en Rs TTC valables du 27 octobre 2026 au 10 janvier 2027) &middot; [DONNÉE MANQUANTE : intitulé de la colonne prix et devise]</div>
   <div class="links">
     <span class="grp">Notation cigares :</span>
     <a href="https://www.cigaraficionado.com/" target="_blank" rel="noopener">Cigar Aficionado</a>
@@ -177,6 +179,8 @@ code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:11.5px
   </table>
 </section>
 
+<div id="catSections"></div>
+
 <footer>
   <h3>Mise à jour cigares — liste « CIGARS OCTOBER 2026 »</h3>
   <ul>
@@ -185,7 +189,19 @@ code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:11.5px
     <li>Retirés de la liste : /*REMOVED*/.</li>
     <li>Nouvelles références (badge <span class="tag new">NOUVEAU</span>) : /*ADDED*/.</li>
     <li>Les accessoires (badge <span class="tag acc">ACCESSOIRE</span>) n'ont ni pays, ni force, ni fiche de notation.</li>
-    <li>La section whiskies est inchangée (aucune liste whisky mise à jour n'a été fournie).</li>
+  </ul>
+  <h3>Sélection festive 2026 / 2027 — catalogue « Le Bottle Shop »</h3>
+  <ul>
+    <li>Badge <span class="tag fest">FÊTES 2026/2027</span> : prix du catalogue festif (Rs TTC), valables du 27 octobre 2026 au 10 janvier 2027, dans la limite des stocks disponibles. La page du catalogue est indiquée au survol du badge.</li>
+    <li>Nouvelles sections : vins (blancs, rosés, rouges), champagnes et autres bulles, gins, sans alcool, rhums, liqueurs — /*NCAT*/ références transcrites du catalogue, désignations reprises telles quelles. Le catalogue ne donne pas de numéro d'article : la colonne référence indique la page et le rang (« Cat. p. 2 / 1 »).</li>
+    <li>Images : bouteilles découpées dans le catalogue lui-même (photos non contractuelles selon le catalogue).</li>
+    <li>Whiskies : prix remplacé par celui du catalogue pour /*NWH_UPD*/ références (/*WH_UPD*/) ; le prix de la liste précédente reste affiché sous le prix. Ajoutés car absents de la liste : /*WH_NEW*/. Les autres whiskies ne figurent pas au catalogue et sont inchangés.</li>
+    <li>4DIAWHI0048 « JW BLACK LABEL ICON 70CL » n'a pas été rapproché du Johnnie Walker Black Label 70 cl du catalogue (édition non précisée) : prix inchangé.</li>
+    <li>Bulles : « Prosecco » d'après le nom ou la page Contarini (p. 7), « Champagne » d'après le catalogue, les autres « Vin effervescent ». Andiamo Spritz Bitter Orange est classé « Apéritif » par le catalogue : filtre à part.</li>
+    <li>Sans alcool : les 7 mixers Hysope (page pleine, p. 17) sont à Rs 75 au lieu de Rs 85.</li>
+    <li>[DONNÉE MANQUANTE : origine] pour les gins, la plupart des rhums, les liqueurs et deux whiskies ajoutés : le catalogue ne l'indique pas (« Non indiquée au catalogue »).</li>
+    <li>Non repris : la page Maison Castel (p. 11, bouteilles sans prix ni libellé) et la page cadeaux (p. 25 : verres Pasabahce, tire-bouchons, coupons cadeaux), hors des catégories demandées.</li>
+    <li>Liens de notation (Wine Spectator, Vivino, etc.) non recherchés pour les références du catalogue.</li>
   </ul>
   <h3>Manques et réserves</h3>
   <ul>
@@ -205,13 +221,33 @@ const CIGARS = [
 const WHISKIES = [
 /*WHISKIES*/
 ];
+const CATSEC = [
+  {id:'vin', title:'Vins', ph:'Rechercher un vin…', types:['Blanc','Rosé','Rouge'], typeAll:'Toutes les couleurs', data:[
+/*CAT_vin*/
+  ]},
+  {id:'bulles', title:'Champagnes et autres bulles', ph:'Rechercher un champagne, un prosecco…', types:['Prosecco','Vin effervescent','Champagne','Apéritif'], typeAll:'Tous les types', data:[
+/*CAT_bulles*/
+  ]},
+  {id:'gin', title:'Gins', ph:'Rechercher un gin…', data:[
+/*CAT_gin*/
+  ]},
+  {id:'sa', title:'Sans alcool', ph:'Rechercher une boisson sans alcool…', data:[
+/*CAT_sansalcool*/
+  ]},
+  {id:'rhum', title:'Rhums', ph:'Rechercher un rhum…', data:[
+/*CAT_rhum*/
+  ]},
+  {id:'liq', title:'Liqueurs', ph:'Rechercher une liqueur…', data:[
+/*CAT_liqueur*/
+  ]},
+];
 const nf = new Intl.NumberFormat('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 const SITE = {CA:"Cigar Aficionado", HW:"halfwheel", WB:"Whiskybase", DI:"Distiller"};
 const LVL={"mild":8,"mild - medium":29,"medium":50,"medium - full":71,"full":92};
 
 function revHTML(r){
-  if(!r[9]) return '<span class="specs">'+(r[11]?'—':'pas de fiche trouvée')+'</span>';
+  if(!r[9]) return '<span class="specs">'+(r[11]?'—':r[13]?'non recherché':'pas de fiche trouvée')+'</span>';
   return r[9].map(([s,u,ex])=>'<a class="rv'+(ex?'':' approx')+'" target="_blank" rel="noopener" title="'+
     (ex?'Fiche du produit sur '+SITE[s]:'Fiche la plus proche sur '+SITE[s]+' : autre vitole / autre format de la même gamme')+
     '" href="'+esc(u)+'">'+SITE[s]+(ex?'':' ≈')+'</a>').join('');
@@ -239,12 +275,19 @@ function lenHTML(r){
   return '<div class="specs"><b>Longueur :</b> <a class="len'+(ex?'':' approx')+'" target="_blank" rel="noopener" title="'+
     esc('Cigar Aficionado : '+n+(ex?'':'\nMême vitole, ligne voisine (pas de fiche pour cette ligne exacte)'))+'" href="'+esc(u)+'">'+esc(l)+(ex?'':' ≈')+'</a></div>';
 }
+function priceHTML(r){
+  return (r[13]?'Rs ':'')+nf.format(r[2])+(r[13]?' TTC':'');
+}
+function oldHTML(r){
+  return r[15]!==null && r[15]!==undefined ? '<div class="oldp">Prix liste précédente : '+nf.format(r[15])+'</div>' : '';
+}
 function stockHTML(r){
   if(!r[10]) return '<span class="specs">—</span>';
   const [pn,sh,tot]=r[10];
   return '<span class="stock '+(tot?'ok':'zero')+'" title="PNLMAIN : '+pn+'\nSHOP : '+sh+'\nTOTAL : '+tot+'"><b>'+tot+'</b> <span style="color:var(--muted)">('+pn+'+'+sh+')</span></span>';
 }
 function tagHTML(r){
+  if(r[13]) return '<span class="tag fest" title="Sélection festive 2026/2027 — prix valables du 27 octobre 2026 au 10 janvier 2027 (catalogue Le Bottle Shop, p. '+r[13]+')">FÊTES 2026/2027</span>';
   if(r[11]) return '<span class="tag acc">ACCESSOIRE</span>';
   if(r[4] && r[4].indexOf('NOUVEAU')===0) return '<span class="tag new">NOUVEAU</span>';
   return '';
@@ -260,12 +303,18 @@ function makeTable(cfg){
   const grid = document.querySelector(cfg.grid);
   const sortSel = document.querySelector(cfg.sort);
   const ctry = document.querySelector(cfg.country);
+  const typ = cfg.type ? document.querySelector(cfg.type) : null;
   let sortKey=null, sortDir=1;
   const idx = {ref:0, desc:1, price:2, country:6};
   const cnt={}; cfg.data.forEach(r=>cnt[r[6]]=(cnt[r[6]]||0)+1);
   ctry.innerHTML = '<option value="">Tous les pays ('+cfg.data.length+')</option>' +
     Object.keys(cnt).sort((a,b)=>a.localeCompare(b,'fr')).map(c=>'<option value="'+esc(c)+'">'+esc(c)+' ('+cnt[c]+')</option>').join('');
   title.textContent = '· ' + cfg.data.length + ' références';
+  if(typ){
+    const tc={}; cfg.data.forEach(r=>tc[r[14]]=(tc[r[14]]||0)+1);
+    typ.innerHTML = '<option value="">'+cfg.typeAll+' ('+cfg.data.length+')</option>' +
+      cfg.types.filter(t=>tc[t]).map(t=>'<option value="'+esc(t)+'">'+esc(t)+' ('+tc[t]+')</option>').join('');
+  }
 
   function markHeaders(){
     document.querySelectorAll(cfg.table+' th[data-k]').forEach(x=>{
@@ -278,7 +327,8 @@ function makeTable(cfg){
   function render(){
     const q = search.value.trim().toLowerCase();
     let rows = cfg.data.filter(r=>{
-      if(missing.checked && r[3]) return false;
+      if(missing && missing.checked && r[3]) return false;
+      if(typ && typ.value && r[14]!==typ.value) return false;
       if(stockOnly && stockOnly.checked && !(r[10] && r[10][2]>0)) return false;
       if(ctry.value && r[6]!==ctry.value) return false;
       if(!q) return true;
@@ -292,14 +342,18 @@ function makeTable(cfg){
         return String(a[i]).localeCompare(String(b[i]),'fr',{numeric:true})*sortDir;
       });
     }
-    tbody.innerHTML = rows.map(r=>{
+    if(cfg.cat) tbody.innerHTML = rows.map(r=>
+      '<tr><td class="img"><img class="thumb" loading="lazy" src="'+esc(r[3])+'" alt="'+esc(r[1])+'"></td><td class="ref">'+esc(r[0])+'</td><td>'+esc(r[1])+
+      (r[4]?' <span class="note" title="'+esc(r[4])+'">i</span>':'')+tagHTML(r)+'</td><td class="ctry">'+esc(r[6])+'</td><td class="ctry">'+esc(r[16])+
+      '</td><td class="num">'+priceHTML(r)+'</td></tr>').join('');
+    else tbody.innerHTML = rows.map(r=>{
       const img = r[3]
         ? '<img class="thumb" loading="lazy" src="'+esc(r[3])+'" alt="'+esc(r[1])+'" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div class=&quot;na&quot;>IMAGE INDISPO.</div>\'">'
         : '<div class="na">IMAGE MANQUANTE</div>';
       const note = r[4] ? ' <span class="note" title="'+esc(r[4])+'">i</span>' : '';
       return '<tr><td class="img">'+img+'</td><td class="ref">'+esc(r[0])+'</td><td>'+esc(r[1])+note+tagHTML(r)+
         '</td><td class="ctry">'+esc(r[6])+'</td><td class="force">'+strengthHTML(r)+
-        '</td><td class="num">'+nf.format(r[2])+'</td><td class="num">'+stockHTML(r)+'</td><td>'+revHTML(r)+nep(r)+'</td></tr>';
+        '</td><td class="num">'+priceHTML(r)+oldHTML(r)+'</td><td class="num">'+stockHTML(r)+'</td><td>'+revHTML(r)+nep(r)+'</td></tr>';
     }).join('');
     grid.innerHTML = rows.map(r=>{
       const pic = r[3]
@@ -307,9 +361,9 @@ function makeTable(cfg){
         : '<div class="pic nopic">IMAGE MANQUANTE</div>';
       const note = r[4] ? ' <span class="note" title="'+esc(r[4])+'">i</span>' : '';
       return '<div class="card">'+pic+'<div class="body"><div class="ref">'+esc(r[0])+' · '+esc(r[6])+tagHTML(r)+
-        '</div><div class="desc">'+esc(r[1])+note+'</div>'+specsHTML(r)+lenHTML(r)+
+        '</div><div class="desc">'+esc(r[1])+note+'</div>'+(r[16]?'<div class="specs">'+esc(r[16])+'</div>':'')+specsHTML(r)+lenHTML(r)+
         (r[10]?'<div class="specs"><b>Stock :</b> '+stockHTML(r)+'</div>':'')+
-        '<div class="price">'+nf.format(r[2])+'</div><div class="revs">'+revHTML(r)+nep(r)+'</div></div></div>';
+        '<div class="price">'+priceHTML(r)+oldHTML(r)+'</div>'+(cfg.cat?'':'<div class="revs">'+revHTML(r)+nep(r)+'</div>')+'</div></div>';
     }).join('');
     count.textContent = rows.length + ' / ' + cfg.data.length + ' affichées';
   }
@@ -321,7 +375,8 @@ function makeTable(cfg){
     });
   });
   search.addEventListener('input',render);
-  missing.addEventListener('change',render);
+  if(missing) missing.addEventListener('change',render);
+  if(typ) typ.addEventListener('change',render);
   if(stockOnly) stockOnly.addEventListener('change',render);
   ctry.addEventListener('change',render);
   sortSel.addEventListener('change',()=>{
@@ -333,6 +388,23 @@ function makeTable(cfg){
 
 makeTable({data:CIGARS, table:'#cigTable', search:'#cigSearch', missing:'#cigMissing', stock:'#cigStock', count:'#cigCount', title:'#cigTitle', grid:'#cigGrid', sort:'#cigSort', country:'#cigCountry'});
 makeTable({data:WHISKIES, table:'#whTable', search:'#whSearch', missing:'#whMissing', stock:null, count:'#whCount', title:'#whTitle', grid:'#whGrid', sort:'#whSort', country:'#whCountry'});
+
+document.getElementById('catSections').innerHTML = CATSEC.map(c=>
+  '<section id="'+c.id+'"><h2>'+esc(c.title)+' <span id="'+c.id+'Title"></span></h2><div class="toolbar">'+
+  '<input type="search" id="'+c.id+'Search" placeholder="'+esc(c.ph)+'">'+
+  (c.types?'<select class="ctry" id="'+c.id+'Type" aria-label="Type"></select>':'')+
+  '<select class="ctry" id="'+c.id+'Country" aria-label="Origine"></select>'+
+  '<select class="sort" id="'+c.id+'Sort" aria-label="Trier"><option value="">Ordre du catalogue</option><option value="desc:1">Description A → Z</option>'+
+  '<option value="desc:-1">Description Z → A</option><option value="price:1">Prix croissant</option><option value="price:-1">Prix décroissant</option></select>'+
+  '<span class="count" id="'+c.id+'Count"></span></div><div class="gridwrap" id="'+c.id+'Grid"></div>'+
+  '<table id="'+c.id+'Table"><thead><tr><th class="img">Image</th><th data-k="ref">Réf. catalogue</th><th data-k="desc">Description</th>'+
+  '<th data-k="country">Origine</th><th class="rev">Détail</th><th class="num" data-k="price">Prix</th></tr></thead><tbody></tbody></table></section>').join('');
+CATSEC.forEach(c=>{
+  makeTable({data:c.data, cat:true, table:'#'+c.id+'Table', search:'#'+c.id+'Search', missing:null, stock:null, count:'#'+c.id+'Count',
+    title:'#'+c.id+'Title', grid:'#'+c.id+'Grid', sort:'#'+c.id+'Sort', country:'#'+c.id+'Country',
+    type:c.types?'#'+c.id+'Type':null, types:c.types, typeAll:c.typeAll});
+  const o=document.querySelector('#'+c.id+'Country option'); if(o) o.textContent=o.textContent.replace('Tous les pays','Toutes les origines');
+});
 
 function setView(v){
   document.body.classList.toggle('grid', v==='grid');
