@@ -363,7 +363,7 @@ function specsHTML(r){
   return '<div class="specs"><b>Force :</b> <span class="strength" style="display:inline-flex"><span class="meter">'+(p===undefined?'':'<i style="left:'+p+'%"></i>')+'</span><span>'+esc(r[8][0])+'</span></span><br><b>Cape :</b> '+esc(r[8][1])+'<br><b>Sous-cape :</b> '+esc(r[8][2])+'<br><b>Tripe :</b> '+esc(r[8][3])+'<br><b>Fabricant :</b> '+esc(r[8][4])+'</div>';
 }
 function lenHTML(r){
-  if(r[11]) return '';
+  if(r[11] || !r[10]) return '';  // accessoires, whiskies
   if(!r[12]) return '<div class="specs"><b>Longueur :</b> [DONNÉE MANQUANTE : longueur, pas de fiche Cigar Aficionado pour cette vitole]</div>';
   const [l,n,u,ex]=r[12];
   return '<div class="specs"><b>Longueur :</b> <a class="len'+(ex?'':' approx')+'" target="_blank" rel="noopener" title="'+
