@@ -14,6 +14,9 @@ Pricelist cigares &amp; whiskies — page HTML autonome, consultable en tableau 
 | `src/data_cig.py` | Liste cigares (référence, désignation, prix, stocks PNLMAIN/SHOP/TOTAL) |
 | `src/data_wh.py` | Liste whiskies (référence, désignation, prix, image, pays, liens) |
 | `src/enrich.py` | Données par référence : images, pays, force, composition, liens Neptune et liens de notation |
+| `src/data_cat.py` | Catalogue « Le Bottle Shop — Sélection festive 2026 / 2027 » : vins, bulles, gins, sans alcool, rhums, liqueurs, whiskies (transcription, cadres d'images, rapprochements whiskies) |
+| `src/crop_catalogue.py` | Outil ponctuel (PyMuPDF) : découpe les bouteilles du PDF du catalogue vers `img/cat/` |
+| `img/cat/` | Images des bouteilles découpées dans le catalogue |
 | `src/build.py` | Assemble le gabarit et les données pour produire `index.html` |
 
 ## Régénérer la page
