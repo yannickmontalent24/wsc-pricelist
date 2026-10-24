@@ -185,6 +185,7 @@ IMG.update({
 "105":"https://cdn11.bigcommerce.com/s-2ooutu2zpl/products/38096/images/41016/Robusto9342__54378.1509506946.500.750.jpg?c=2",
 "71":"https://images.neptunecigar.com/prodimgl/222392_0.jpg?dummy=140523750",
 "112":"https://images.neptunecigar.com/prodimgl/299548_0.jpg?dummy=120246613",
+"84":"https://images.neptunecigar.com/prodimgl/359652_0.jpg?dummy=153109547",
 })
 NOTE.update({
 "05":"NOUVEAU (oct. 2026) · image Trinidad Esmeralda, boîte de 12 (CigarTerminal)",
@@ -194,7 +195,7 @@ NOTE.update({
 "67":"NOUVEAU (oct. 2026) · image New World Dorado Sampler (Atlantic Cigar) ; correspondance « Gold Standard » non confirmée",
 "50":"NOUVEAU (oct. 2026) · image New World Oscuro Gobernador Toro, boîte (pack /5/ non visualisé)",
 "105":"Image : Decade Robusto (vitole « Short Robusto » non référencée chez Atlantic Cigar)",
-"84":"NOUVEAU (oct. 2026) · [DONNÉE MANQUANTE : image] vitole Tres Petit non trouvée dans la gamme Quorum Shade",
+"84":"NOUVEAU (oct. 2026) · image Neptune Cigar (fiche Quorum Shade Tres Petit Corona)",
 "121":"NOUVEAU (oct. 2026) · [DONNÉE MANQUANTE : image] « New World Sampler » non identifié avec certitude",
 "62":"NOUVEAU (oct. 2026) · [DONNÉE MANQUANTE : image] sampler non identifié avec certitude",
 "66":"NOUVEAU (oct. 2026) · [DONNÉE MANQUANTE : image] sampler non identifié avec certitude",
