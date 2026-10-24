@@ -9,8 +9,9 @@ for line in D.NEW.split('\n'):
     acc = k in EN.ACC
     CIG.append([B+k, desc, float(price), EN.IMG.get(k,""), EN.NOTE.get(k,""), EN.TERM[k],
                 EN.COUNTRY[k], EN.NEP.get(k) and [EN.NEP[k][0],EN.NEP[k][1]] or None,
-                EN.SPEC.get(k), EN.LINKS.get(k), [int(pn),int(sh),int(tot)], acc])
-WH=[[r[0],r[1],r[2],r[3],r[4],r[5],r[6],None,None,r[7],None,False] for r in data_wh.WH]
+                EN.SPEC.get(k), EN.LINKS.get(k), [int(pn),int(sh),int(tot)], acc,
+                EN.LEN.get(k) and list(EN.LEN[k])])
+WH=[[r[0],r[1],r[2],r[3],r[4],r[5],r[6],None,None,r[7],None,False,None] for r in data_wh.WH]
 def js(rows):
     return ',\n'.join(json.dumps(r,ensure_ascii=False) for r in rows)
 removed=[(B+k,D.OLD_DESC[k]) for k in ["43","44","55","70","83","86","95","96","97","98","115","118"]]

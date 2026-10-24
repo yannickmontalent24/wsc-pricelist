@@ -45,6 +45,9 @@ a.rv{display:inline-block;margin:2px 4px 2px 0;padding:3px 8px;border:1px solid 
 a.rv:hover{border-color:var(--accent);color:var(--accent)}
 a.rv.approx{border-style:dashed;color:var(--muted)}
 a.rv.nep{border-color:#4a5a3a;color:#cfe3a8}
+a.len{color:var(--txt);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
+a.len:hover{color:var(--accent)}
+a.len.approx{text-decoration-style:dashed;color:var(--muted)}
 .meter{display:inline-block;width:86px;height:7px;border-radius:4px;background:linear-gradient(90deg,#3f8f4a,#b7c93a,#e0c23a,#e08a3a,#d24b32);position:relative;vertical-align:middle}
 .meter i{position:absolute;top:-3px;width:3px;height:13px;background:#fff;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.5);transform:translateX(-1.5px)}
 .strength{display:flex;align-items:center;gap:7px;white-space:nowrap}
@@ -229,6 +232,13 @@ function specsHTML(r){
   const p=LVL[r[8][0].toLowerCase()];
   return '<div class="specs"><b>Force :</b> <span class="strength" style="display:inline-flex"><span class="meter">'+(p===undefined?'':'<i style="left:'+p+'%"></i>')+'</span><span>'+esc(r[8][0])+'</span></span><br><b>Cape :</b> '+esc(r[8][1])+'<br><b>Sous-cape :</b> '+esc(r[8][2])+'<br><b>Tripe :</b> '+esc(r[8][3])+'<br><b>Fabricant :</b> '+esc(r[8][4])+'</div>';
 }
+function lenHTML(r){
+  if(r[11]) return '';
+  if(!r[12]) return '<div class="specs"><b>Longueur :</b> [DONNÉE MANQUANTE : longueur, pas de fiche Cigar Aficionado pour cette vitole]</div>';
+  const [l,n,u,ex]=r[12];
+  return '<div class="specs"><b>Longueur :</b> <a class="len'+(ex?'':' approx')+'" target="_blank" rel="noopener" title="'+
+    esc('Cigar Aficionado : '+n+(ex?'':'\nMême vitole, ligne voisine (pas de fiche pour cette ligne exacte)'))+'" href="'+esc(u)+'">'+esc(l)+(ex?'':' ≈')+'</a></div>';
+}
 function stockHTML(r){
   if(!r[10]) return '<span class="specs">—</span>';
   const [pn,sh,tot]=r[10];
@@ -297,7 +307,7 @@ function makeTable(cfg){
         : '<div class="pic nopic">IMAGE MANQUANTE</div>';
       const note = r[4] ? ' <span class="note" title="'+esc(r[4])+'">i</span>' : '';
       return '<div class="card">'+pic+'<div class="body"><div class="ref">'+esc(r[0])+' · '+esc(r[6])+tagHTML(r)+
-        '</div><div class="desc">'+esc(r[1])+note+'</div>'+specsHTML(r)+
+        '</div><div class="desc">'+esc(r[1])+note+'</div>'+specsHTML(r)+lenHTML(r)+
         (r[10]?'<div class="specs"><b>Stock :</b> '+stockHTML(r)+'</div>':'')+
         '<div class="price">'+nf.format(r[2])+'</div><div class="revs">'+revHTML(r)+nep(r)+'</div></div></div>';
     }).join('');
